@@ -1,4 +1,16 @@
-import { Outlet, LiveReload, Link } from 'remix'
+import { Outlet, LiveReload, Link, Links, Meta } from 'remix'
+import globalStylesUrl from '~/styles/global.css'
+
+export const links = () => [{ rel: 'stylesheet', href: globalStylesUrl }]
+
+export const meta = () => {
+  const description = 'ThirstyPooch blog'
+  const keywords = 'remix, react, jsx'
+  return {
+    description,
+    keywords,
+  }
+}
 
 export default function App() {
   return (
@@ -14,10 +26,11 @@ function Document({ children, title }) {
   return (
     <html lang='en'>
       <head>
+        <Meta />
+        <Links />
         <title>Remix Blog</title>
       </head>
       <body>
-        some text
         {children}
         {process.env.NODE_ENV === 'development' ? <LiveReload /> : null}
       </body>
